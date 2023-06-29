@@ -22,29 +22,27 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 def extract_words_from_pdf(file_path):
+    # response = requests.get(file_path)
+    # pdf_content = response.content
+    #
+    # pdf_stream = io.BytesIO(pdf_content)
+    # reader = PyPDF2.PdfReader(pdf_stream)
     response = requests.get(file_path)
-    pdf_content = response.content
-
-    pdf_stream = io.BytesIO(pdf_content)
-    reader = PyPDF2.PdfReader(pdf_stream)
-
+    text = response.text
     words = []
     sentences = []
-    for page in reader.pages:
-        # page
-        text = page.extract_text()
-        # sentences
-        for sent in sent_tokenize(text):
-            # words
-            sentences.append(sent)
-            word_tokens = word_tokenize(sent)
-            words += word_tokens
+
+    for sent in sent_tokenize(text):
+        # words
+        sentences.append(sent)
+        word_tokens = word_tokenize(sent)
+        words += word_tokens
     return sentences, words
 
 
 # sentences = sent_tokenize(' '.join(words_list))
 # Specify the path to your PDF file
-pdf_file_path = r'https://storageaccount1002119262.blob.core.windows.net/assignment5-blob-1002119262-saarthakmudigeregirish/Textbook1.pdf'
+pdf_file_path = r'https://storageaccount1002119262.blob.core.windows.net/assignment5-blob-1002119262-saarthakmudigeregirish/Textbook3.txt'
 # Call the function to extract words from the PDF
 words_list = extract_words_from_pdf(pdf_file_path)
 
