@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Page2</title>
+{% endblock %}
+
+{% block body %}
+    <form method="POST">
+        <label for="chars">Enter characters (without space):</label>
+        <input type="text" id="chars" name="chars">
+        <input type="submit" value="Submit" placeholder="Submit"><br><br>
+    </form>
+
+    {% if count_list %}
+        {{count_list}}
+    {% endif %}
+{% endblock %}

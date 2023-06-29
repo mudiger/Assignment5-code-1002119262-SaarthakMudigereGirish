@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Page3</title>
+{% endblock %}
+
+{% block body %}
+    <form method="POST">
+        <label for="chars">Enter character:</label>
+        <input type="text" id="chars" name="chars">
+        <label for="replace">Enter replace character:</label>
+        <input type="text" id="replace" name="replace">
+        <input type="submit" value="Submit" placeholder="Submit"><br><br>
+    </form>
+
+    {% if replaced %}
+        {{replaced}}
+    {% endif %}
+{% endblock %}

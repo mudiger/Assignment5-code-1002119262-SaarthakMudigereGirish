@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Page4</title>
+{% endblock %}
+
+{% block body %}
+    <form method="POST">
+        <label for="n">Enter N:</label>
+        <input type="number" id="n" name="n">
+        <label for="word">Enter word:</label>
+        <input type="text" id="word" name="word">
+        <input type="submit" value="Submit" placeholder="Submit"><br><br>
+    </form>
+
+    {% if w_in_s %}
+        {{w_in_s}}
+    {% endif %}
+{% endblock %}
