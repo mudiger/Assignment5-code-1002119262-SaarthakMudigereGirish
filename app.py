@@ -62,14 +62,13 @@ def page1():
 
     nouns = []
     noun_freq = []
-    for sentence in stopfree_words:
-        words = word_tokenize(sentence)
-        tagged_words = pos_tag(words)
-        nouns.extend([word for word, pos in tagged_words[1:] if pos.startswith('NN') and word[0].isupper()])
-
     if request.method == "POST":
         n = int(request.form['n'])
 
+        for sentence in stopfree_words:
+            words = word_tokenize(sentence)
+            tagged_words = pos_tag(words)
+            nouns.extend([word for word, pos in tagged_words[1:] if pos.startswith('NN') and word[0].isupper()])
         # Calculate the frequency distribution
         freq_dist = FreqDist(nouns)
         noun_freq = freq_dist.most_common(n)
