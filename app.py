@@ -31,7 +31,10 @@ def extract_words_from_pdf(file_path):
     text = response.text
     words = []
     sentences = []
-
+    # for page in text:
+    #     # page
+    #     text = page.extract_text()
+    #     # sentences
     for sent in sent_tokenize(text):
         # words
         sentences.append(sent)
@@ -54,22 +57,27 @@ def index():
 
 @app.route("/page1/", methods=['GET', 'POST'])
 def page1():
+    # stop words
     stwords = set(stopwords.words('english'))
     # Using set difference to eliminate stopwords from our words
     stopfree_words = set(words_list[0]) - stwords
 
     nouns = []
     noun_freq = []
-    for sentence in stopfree_words:
-        words = word_tokenize(sentence)
-        tagged_words = pos_tag(words)
-        nouns.extend([word for word, pos in tagged_words[1:] if pos.startswith('NN') and word[0].isupper()])
+    # All the noun words
+    # Breaking to senteces
+    # for sentence in stopfree_words:
+    #     # Converting to words
+    #     words = word_tokenize(sentence)
+    tagged_words = pos_tag(stopfree_words)
+    nouns.extend([word for word, pos in tagged_words[1:] if pos.startswith('NN') and word[0].isupper()])
 
     if request.method == "POST":
         n = int(request.form['n'])
 
         # Calculate the frequency distribution
         freq_dist = FreqDist(nouns)
+        # Most common number of occurrences
         noun_freq = freq_dist.most_common(n)
 
     return render_template("1)Page.html", noun_freq=noun_freq)
