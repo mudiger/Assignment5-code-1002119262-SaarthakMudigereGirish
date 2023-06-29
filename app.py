@@ -12,9 +12,9 @@ from nltk.stem import snowball
 from nltk.corpus import stopwords
 
 # nltk.download_shell()
-# nltk.download('punkt')
-# nltk.download('stopwords')
-# nltk.download('averaged_perceptron_tagger')
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('averaged_perceptron_tagger')
 
 
 app = Flask(__name__)
