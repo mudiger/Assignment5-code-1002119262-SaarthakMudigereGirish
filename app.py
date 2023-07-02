@@ -66,11 +66,11 @@ def page1():
     noun_freq = []
     # All the noun words
     # Breaking to senteces
-    # for sentence in stopfree_words:
-    #     # Converting to words
-    #     words = word_tokenize(sentence)
-    tagged_words = pos_tag(stopfree_words)
-    nouns.extend([word for word, pos in tagged_words[1:] if pos.startswith('NN') and word[0].isupper()])
+    for sentence in stopfree_words:
+        # Converting to words
+        words = word_tokenize(sentence)
+        tagged_words = pos_tag(words)
+        nouns.extend([word for word, pos in tagged_words[1:] if pos.startswith('NN') and word[0].isupper()])
 
     if request.method == "POST":
         n = int(request.form['n'])
